@@ -1,5 +1,5 @@
-Hybrid GWO + CatBoost + DenseNet201 + EfficientNetV2M
-=======================================================
+Hybrid GWO + CatBoost + DenseNet201 + EfficientNetV2M/V2L
+==========================================================
 
 A hybrid deep learning and optimization pipeline for lung and colon cancer classification, combining:
 
@@ -19,7 +19,7 @@ Features
 
 2.Train/Val/Test split with reproducible ratios
 
-3.Fusion CNN model combining DenseNet201 and EfficientNetV2M
+3.Fusion CNN model combining DenseNet201 and EfficientNetV2M  & Fusion CNN model combining DenseNet201 and EfficientNetV2L
 
 4.Feature extraction for downstream ML classifiers
 
