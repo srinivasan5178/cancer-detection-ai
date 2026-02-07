@@ -84,5 +84,95 @@ Configuration
 2.Batch size: 8
 
 3.Epochs: 50
+
 4.GWO agents/iterations: 6 each (tunable)
 
+
+=************************************************************************************************************************************************************************=
+
+
+BOHB + CatBoost + AUROC Evaluation
+===================================
+
+A hybrid cancer classification pipeline combining deep feature extraction, CatBoost classification, and AUROC-based evaluation, with future support for BOHB hyperparameter optimization and Pyro4 remote execution.
+
+Features
+========
+
+1.Oversampling: Balances class distributions for robust training
+
+2.Fusion CNN: Combines DenseNet201 + EfficientNetV2M/V2L for feature extraction
+
+3.CatBoost Classifier: Trained on extracted features with class weights
+
+4.AUROC Evaluation: Macro-average ROC curves for Train/Val/Test splits
+
+5.Confusion Matrix & F1-score: Detailed performance metrics
+
+6.Pyro4 Integration: Remote execution via NameServer (Ngrok tunnel)
+
+7.BOHB Placeholder: Ready for Bayesian Optimization + HyperBand integration
+
+
+Project Structure
+=================
+
+├── bohb_catboost_auroc.py
+
+├── plots/                      # ROC curves & confusion matrices
+
+├── Project_Sample/            # Original dataset (colon/, lung/)
+
+├── Project_Sample_balanced/   # Oversampled dataset
+
+├── Project_Sample_split_bal/  # Train/Val/Test splits
+
+Usage
+=====
+
+Prepare dataset  
+================
+
+1.Place colon and lung cancer image folders under Project_Sample/.
+
+2.Run pipeline
+
+python bohb_catboost_auroc.py
+
+Outputs
+=======
+
+1.Balanced dataset in Project_Sample_balanced/
+
+2.Train/Val/Test splits in Project_Sample_split_bal/
+
+3.Best fusion model: best_fusion_model.h5
+
+4.CatBoost model: catboost_fusion_model.cbm
+
+5.Plots: ROC curves and confusion matrices in ./plots
+
+Evaluation Metrics
+==================
+
+1.Confusion Matrix: Per-class performance visualization
+
+2.Classification Report: Precision, Recall, F1-score
+
+3.AUROC: Macro-average ROC curves for Train/Val/Test splits
+
+4.Computational Time: Inference + AUROC timing
+
+
+Configuration
+==============
+
+1.Train/Val/Test ratio: RATIO = (0.7, 0.15, 0.15)
+
+2.Batch size: 8
+
+3.Epochs: 50
+
+4.CatBoost params: learning_rate=0.05, depth=6, l2_leaf_reg=3
+
+5.Pyro4 NameServer: 0.tcp.in.ngrok.io:14956
